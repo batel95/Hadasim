@@ -38,5 +38,3 @@ app.MapCoronaVirusEndpoints();
 
 
 app.Run();
-
-Console.WriteLine("h");
