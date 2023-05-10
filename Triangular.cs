@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
 using System.Text;
+using System.Threading.Channels;
 using System.Threading.Tasks;
 
 namespace TwitterTower {
@@ -21,7 +22,7 @@ namespace TwitterTower {
 
 				switch (ans) {
 					case "perimeter":
-						Perimeter();
+						perimeter(hypotenuse(Height, Width / 2), Width);
 						break;
 					case "print":
 						Print();
@@ -80,9 +81,15 @@ namespace TwitterTower {
 
 		}
 
-		private Func<double, double, double> Hypotenuse = (legA, legB) 
+		private Func<double, double, double> hypotenuse = (legA, legB) 
 			=> Math.Sqrt(Math.Pow(legA, 2) + Math.Pow(legB, 2));
+
+
+		private Action<double, double> perimeter = (tSide, tBase)
+			=> Console.WriteLine("Perimeter is: " + (2 * tSide + tBase));
+
 	}
+
 
 
 }
