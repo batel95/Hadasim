@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 namespace TwitterTower {
 	internal class Triangular : Tower 
 	{
+		private int iHeight;
+		private int iWidth;
+
 		public Triangular() {
+			iHeight = (int)Height;
+			iWidth = (int)Width;
 			Choose();
 		}
 
@@ -23,9 +28,13 @@ namespace TwitterTower {
 				switch (ans) {
 					case "perimeter":
 						perimeter(hypotenuse(Height, Width / 2), Width);
-                        break;
+						break;
+
 					case "print":
-						Print();
+						if (!Printable())
+							Console.WriteLine("Cannot print the triangle");
+						else
+							TriangularStr();
 						break;
 
 					default:
@@ -35,16 +44,6 @@ namespace TwitterTower {
 				}
 			} while (ans == "");
 		}
-
-		private void Print() {
-			var iHeight = (int)Height;
-			var iWidth = (int)Width;
-			if (iHeight != Height || iWidth != Width || iWidth % 2 == 0 || Width > 2 * Height)
-                Console.WriteLine("Cannot print the triangle");
-			else
-                TriangularStr();
-
-        }
 
 		private void TriangularStr() {
 			var starArr = new int[(int)Height];
@@ -84,8 +83,11 @@ namespace TwitterTower {
 		private Action<double, double> perimeter = (tSide, tBase)
 			=> Console.WriteLine("Perimeter is: " + (2 * tSide + tBase));
 
+		private bool Printable()
+			=> (iHeight == Height && iWidth == Width && iWidth % 2 != 0 && iWidth <= 2 * iHeight);
+
 	}
-	
+
 
 
 }
