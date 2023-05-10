@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -9,7 +9,12 @@ using System.Threading.Tasks;
 namespace TwitterTower {
 	internal class Triangular : Tower 
 	{
+		private int iHeight;
+		private int iWidth;
+
 		public Triangular() {
+			iHeight = (int)Height;
+			iWidth = (int)Width;
 			Choose();
 		}
 
@@ -24,8 +29,12 @@ namespace TwitterTower {
 					case "perimeter":
 						perimeter(hypotenuse(Height, Width / 2), Width);
 						break;
+
 					case "print":
-						Print();
+						if (!Printable())
+							Console.WriteLine("Cannot print the triangle");
+						else
+							TriangularStr();
 						break;
 
 					default:
@@ -36,24 +45,10 @@ namespace TwitterTower {
 			} while (ans == "");
 		}
 
-		private void Perimeter() {
-			var per = 2 * Hypotenuse(Height, Width / 2) + Width;
-            Console.WriteLine("Triangular perimeter is {0}.", per);
-        }
-		private void Print() {
-			var iHeight = (int)Height;
-			var iWidth = (int)Width;
-			if (iHeight != Height || iWidth != Width || iWidth % 2 == 0 || Width > 2 * Height)
-                Console.WriteLine("Cannot print the triangle");
-			else
-                TriangularStr();
-
-        }
-
 		private void TriangularStr() {
-			var starArr = new int[(int)Height];
-			var stars = (int)Width;
-			var s = ((int)Height - 2)/((((int)Width - 1) / 2) - 1);
+			var starArr = new int[iHeight];
+			var stars = iWidth;
+			var s = (iHeight - 2)/(((iWidth - 1) / 2) - 1);
 			string tempStr = "";
 			int j = 0;
 			starArr[0] = 1;
@@ -76,7 +71,7 @@ namespace TwitterTower {
 				for (int k = 0; k < starArr[i]; k++) {
 					tempStr += "*";
 				}
-                Console.WriteLine(tempStr.PadLeft((((int)Width - starArr[i]) / 2 ) + starArr[i]));
+                Console.WriteLine(tempStr.PadLeft(((iWidth - starArr[i]) / 2 ) + starArr[i]));
 			}
 
 		}
@@ -87,6 +82,9 @@ namespace TwitterTower {
 
 		private Action<double, double> perimeter = (tSide, tBase)
 			=> Console.WriteLine("Perimeter is: " + (2 * tSide + tBase));
+
+		private bool Printable()
+			=> (iHeight == Height && iWidth == Width && iWidth % 2 != 0 && iWidth <= 2 * iHeight);
 
 	}
 
