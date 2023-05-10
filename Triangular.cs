@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
@@ -46,9 +46,9 @@ namespace TwitterTower {
 		}
 
 		private void TriangularStr() {
-			var starArr = new int[(int)Height];
-			var stars = (int)Width;
-			var s = ((int)Height - 2)/((((int)Width - 1) / 2) - 1);
+			var starArr = new int[iHeight];
+			var stars = iWidth;
+			var s = (iHeight - 2)/(((iWidth - 1) / 2) - 1);
 			string tempStr = "";
 			int j = 0;
 			starArr[0] = 1;
@@ -71,7 +71,7 @@ namespace TwitterTower {
 				for (int k = 0; k < starArr[i]; k++) {
 					tempStr += "*";
 				}
-                Console.WriteLine(tempStr.PadLeft((((int)Width - starArr[i]) / 2 ) + starArr[i]));
+                Console.WriteLine(tempStr.PadLeft(((iWidth - starArr[i]) / 2 ) + starArr[i]));
 			}
 
 		}
