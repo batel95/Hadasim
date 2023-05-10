@@ -36,5 +36,4 @@ app.MapUsersEndpoints();
 
 app.MapCoronaVirusEndpoints();
 
-
 app.Run();
