@@ -23,7 +23,7 @@ namespace TwitterTower {
 				switch (ans) {
 					case "perimeter":
 						perimeter(hypotenuse(Height, Width / 2), Width);
-                        break;
+						break;
 					case "print":
 						Print();
 						break;
@@ -36,6 +36,10 @@ namespace TwitterTower {
 			} while (ans == "");
 		}
 
+		private void Perimeter() {
+			var per = 2 * Hypotenuse(Height, Width / 2) + Width;
+            Console.WriteLine("Triangular perimeter is {0}.", per);
+        }
 		private void Print() {
 			var iHeight = (int)Height;
 			var iWidth = (int)Width;
@@ -85,7 +89,7 @@ namespace TwitterTower {
 			=> Console.WriteLine("Perimeter is: " + (2 * tSide + tBase));
 
 	}
-	
+
 
 
 }
